@@ -1,0 +1,15 @@
+li {
+    list-style: none;
+}
+
+.jumbotron {
+    background-color: linen;
+}
+
+.main-section {
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 2em;
+}
