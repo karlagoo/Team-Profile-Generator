@@ -28,13 +28,12 @@ module.exports = team => {
 
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Blossom</h5>
+                        <h5 class="card-title">${answers.managerName}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Title: Manager</h6>
                         <p>
-                            <li>ID: 6789</li>
-                            <li>Office Number:</li>
-                            <li><a href="#" class="card-link">blossom@powerpuffgirls.com</a></li>
-                            <li><a href="#" class="card-link">https://github.com/blossomppg</a></li>
+                            <li>ID: ${answers.managerId}</li>
+                            <li>Office Number: ${answers.officeNumber}</li>
+                            <li><a href="mailto:${answers.managerEmail}" class="card-link">${answers.managerEmail}</a></li>
                         </p>
                     </div>
                 </div>
@@ -43,12 +42,12 @@ module.exports = team => {
 
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Bubbles</h5>
+                        <h5 class="card-title">${answers.engineerName}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Title: Engineer</h6>
                         <p>
-                            <li>ID: 1234</li>
-                            <li><a href="#" class="card-link">bubbles@powerpuffgirls.com</a></li>
-                            <li><a href="#" class="card-link">https://github.com/bubblesppg</a></li>
+                            <li>ID: ${answers.engineerId}</li>
+                            <li><a href="mailto:${answers.engineerEmail}" class="card-link">${answers.engineerEmail}</a></li>
+                            <li><a href="http://github.com/${answers.github}" class="card-link">https://github.com/${answers.github}</a></li>
 
                         </p>
                     </div>
@@ -56,13 +55,12 @@ module.exports = team => {
 
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Buttercup</h5>
+                        <h5 class="card-title">${answers.internName}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Title: Intern</h6>
                         <p>
-                            <li>ID: 5678</li>
-                            <li>School: UIC</li>
-                            <li><a href="#" class="card-link">buttercup@powerpuffgirls.com</a></li>
-                            <li><a href="#" class="card-link">https://github.com/buttercupppg</a></li>
+                            <li>ID: ${answers.internId}</li>
+                            <li>School: ${answers.school}</li>
+                            <li><a href="mailto:${answers.internEmail}" class="card-link">${answers.internEmail}</a></li>
                         </p>
                     </div>
                 </div>

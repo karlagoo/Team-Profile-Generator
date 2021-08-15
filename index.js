@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const jest = require('jest');
 const path = require('path');
 
 const Employee = require('./lib/Employee');
@@ -34,7 +33,8 @@ function startApp() {
                 name: "officeNumber"
             }
         ].then(answers => {
-
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
+            teamArr.push(manager);
         }))
 
     }
@@ -48,7 +48,7 @@ function startApp() {
             {
                 type: "input",
                 message: "What is the engineer's ID number?",
-                name: "enginnerId"
+                name: "engineerId"
             },
             {
                 type: "input",
@@ -58,11 +58,12 @@ function startApp() {
             {
                 type: "input",
                 message: "What is the engineer's GitHub username?",
-                name: "engineerGithub"
+                name: "github"
             },
 
         ].then(answers =>{
-
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
+            teamArr.push(engineer);
         }))
 
     }
@@ -86,9 +87,12 @@ function startApp() {
             {
                 type: "input",
                 message: "What university did the intern attend?",
-                name: "internSchool"
+                name: "school"
             },
-        ])
+        ].then(answers => {
+            const intern = new Intern(answers.name, answers.internId, answers.internEmail, answers.school);
+            teamArr.push(intern);
+        }))
 
     }
 
