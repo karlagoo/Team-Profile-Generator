@@ -31,6 +31,12 @@ function startApp() {
                 type: "input",
                 message: "What is the manager's office number?",
                 name: "officeNumber"
+            },
+            {
+                type: "list",
+                message: "What team member would you like to add next?",
+                choices: ["Intern", "Engineer"],
+                name: "nextEmployee"
             }
         ].then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
@@ -97,3 +103,4 @@ function startApp() {
     }
 
 }
+startApp()
