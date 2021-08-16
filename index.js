@@ -35,13 +35,20 @@ function startApp() {
             {
                 type: "list",
                 message: "What team member would you like to add next?",
-                choices: ["Intern", "Engineer"],
+                choices: ["Intern", "Engineer", "done"],
                 name: "nextEmployee"
             }
-        ].then(answers => {
+        ]).then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
             teamArr.push(manager);
-        }))
+            if (answers.nextEmployee === "Intern") {
+                addIntern()
+            } else if (answers.nextEmployee === "Engineer") {
+                addEngineer()
+            } else {
+                completeSetup()
+            }
+        })
 
     }
     function addEngineer() {
@@ -66,11 +73,25 @@ function startApp() {
                 message: "What is the engineer's GitHub username?",
                 name: "github"
             },
+            {
+                type: "list",
+                message: "What team member would you like to add next?",
+                choices: ["Intern", "Engineer", "done"],
+                name: "nextEmployee"
+            }
 
-        ].then(answers =>{
+        ]).then(answers =>{
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
             teamArr.push(engineer);
-        }))
+            if (answers.nextEmployee === "Intern") {
+                addIntern()
+            } else if (answers.nextEmployee === "Engineer") {
+                addEngineer()
+            } else {
+                completeSetup()
+            }
+
+        })
 
     }
     function addIntern() {
@@ -95,12 +116,28 @@ function startApp() {
                 message: "What university did the intern attend?",
                 name: "school"
             },
-        ].then(answers => {
-            const intern = new Intern(answers.name, answers.internId, answers.internEmail, answers.school);
+            {
+                type: "list",
+                message: "What team member would you like to add next?",
+                choices: ["Intern", "Engineer", "done"],
+                name: "nextEmployee"
+            }
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.school);
             teamArr.push(intern);
-        }))
+            if (answers.nextEmployee === "Intern") {
+                addIntern()
+            } else if (answers.nextEmployee === "Engineer") {
+                addEngineer()
+            } else {
+                completeSetup()
+            }
+        })
 
     }
-
+addManager()
+}
+function completeSetup() {    
+    console.log(teamArr)
 }
 startApp()
