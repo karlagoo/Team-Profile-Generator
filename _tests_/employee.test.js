@@ -1,3 +1,6 @@
-const employee = require('./lib/Employee');
+const Employee = require('../lib/Employee');
 
-describe(employee)
+test("Is employee constructor an object", () => {
+    const object = new Employee();
+    expect(typeof(object)).toBe("object");
+  });
