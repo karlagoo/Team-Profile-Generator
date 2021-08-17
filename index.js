@@ -7,9 +7,12 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
+const create = require('./src/page-template')
+
 const teamArr = []
 
 function startApp() {
+    console.log("Let's set up your team!")
     function addManager() {
         inquirer.prompt([
             {
@@ -36,14 +39,14 @@ function startApp() {
                 type: "list",
                 message: "What team member would you like to add next?",
                 choices: ["Intern", "Engineer", "done"],
-                name: "nextEmployee"
+                name: "nextSelection"
             }
         ]).then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
             teamArr.push(manager);
-            if (answers.nextEmployee === "Intern") {
+            if (answers.nextSelection === "Intern") {
                 addIntern()
-            } else if (answers.nextEmployee === "Engineer") {
+            } else if (answers.nextSelection === "Engineer") {
                 addEngineer()
             } else {
                 completeSetup()
@@ -77,15 +80,15 @@ function startApp() {
                 type: "list",
                 message: "What team member would you like to add next?",
                 choices: ["Intern", "Engineer", "done"],
-                name: "nextEmployee"
+                name: "nextSelection"
             }
 
         ]).then(answers =>{
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
             teamArr.push(engineer);
-            if (answers.nextEmployee === "Intern") {
+            if (answers.nextSelection === "Intern") {
                 addIntern()
-            } else if (answers.nextEmployee === "Engineer") {
+            } else if (answers.nextSelection === "Engineer") {
                 addEngineer()
             } else {
                 completeSetup()
@@ -120,14 +123,14 @@ function startApp() {
                 type: "list",
                 message: "What team member would you like to add next?",
                 choices: ["Intern", "Engineer", "done"],
-                name: "nextEmployee"
+                name: "nextSelection"
             }
         ]).then(answers => {
             const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.school);
             teamArr.push(intern);
-            if (answers.nextEmployee === "Intern") {
+            if (answers.nextSelection === "Intern") {
                 addIntern()
-            } else if (answers.nextEmployee === "Engineer") {
+            } else if (answers.nextSelection === "Engineer") {
                 addEngineer()
             } else {
                 completeSetup()
@@ -138,6 +141,21 @@ function startApp() {
 addManager()
 }
 function completeSetup() {    
-    console.log(teamArr)
-}
-startApp()
+    fs.writeFileSync(path.join('./dist', 'team.html'), create(teamArr), "utf-8");
+    console.log("Successfully created file team.html in ./dist");
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Would you like to see the contents of the file you just created?",
+            choices: ["Yes please", "No thank you"],
+            name: "response"
+        }
+    ]).then(answer => {
+        if (answer.response == "Yes please") {
+            console.log(fs.readFileSync('./dist/team.html', 'utf-8'));
+        } 
+        console.log("Thank you, have a great day!");
+    })
+};
+
+startApp();
